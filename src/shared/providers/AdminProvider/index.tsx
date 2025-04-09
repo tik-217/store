@@ -1,7 +1,5 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
-export const AdminProvider = () => {
-  return (
-    <div>AdminProvider</div>
-  );
+export const AdminProvider = ({ children }: { children: ReactNode }) => {
+  return <>{children}</>;
 };
