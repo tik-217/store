@@ -1,0 +1,1 @@
+export { createProductValidation } from './createProductValidation';

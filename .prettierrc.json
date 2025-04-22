@@ -1,17 +1,5 @@
 {
   "singleQuote": true,
-  "trailingComma": "all",
   "semi": true,
-  "tabWidth": 2,
-  "printWidth": 80,
-  "overrides": [
-    {
-      "files": ["*.js", "*.ts", "*.jsx", "*.tsx", "*.cjs", "*.cts", "*.mjs", "*.mts", "*.vue", "*.astro"],
-      "options": {
-        "singleQuote": true,
-        "trailingComma": "all",
-        "semi": true
-      }
-    }
-  ]
+  "tabWidth": 2
 }

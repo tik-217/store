@@ -1,0 +1,1 @@
+export { AdminGoodsLayout } from './AdminGoodsLayout';

@@ -1,0 +1,1 @@
+export { AdminGoodsCreate } from './AdminGoodsCreate';

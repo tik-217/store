@@ -1,0 +1,1 @@
+export { CreatedProduct } from './CreatedProduct';
