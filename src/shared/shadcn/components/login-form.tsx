@@ -10,8 +10,13 @@ import {
 } from '@/shared/shadcn/components/ui/card';
 import { Input } from '@/shared/shadcn/components/ui/input';
 import { Label } from '@/shared/shadcn/components/ui/label';
+import { Loader2 } from 'lucide-react';
 
-export function LoginForm({ className, ...props }: ComponentProps<'div'>) {
+interface LoginFormProps extends ComponentProps<'div'> {
+  isLoading?: boolean;
+}
+
+export function LoginForm({ className, isLoading, ...props }: LoginFormProps) {
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
@@ -30,7 +35,7 @@ export function LoginForm({ className, ...props }: ComponentProps<'div'>) {
                   id="username"
                   name="username"
                   type="text"
-                  placeholder="username"
+                  placeholder="Username"
                   required
                 />
               </div>
@@ -38,10 +43,17 @@ export function LoginForm({ className, ...props }: ComponentProps<'div'>) {
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                 </div>
-                <Input id="password" name="password" type="password" required />
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder={'Password'}
+                  required
+                />
               </div>
               <div className="flex flex-col gap-3">
                 <Button type="submit" className="w-full">
+                  {isLoading && <Loader2 className="animate-spin" />}
                   Login
                 </Button>
               </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { AdminForm } from '@/features';
+import { AdminForm } from '@/features/AdminForm';
 
 export const AdminLogin = () => {
   return (

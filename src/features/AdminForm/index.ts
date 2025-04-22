@@ -1,3 +1,3 @@
 export { AdminForm } from './ui';
-export type { LoginArgs } from './model';
+export type { LoginArgs, LoginResponse } from './model';
 export { useLogin, loginReq } from './api';

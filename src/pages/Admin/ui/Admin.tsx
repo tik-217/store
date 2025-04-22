@@ -1,5 +1,5 @@
 'use client';
 
 export const Admin = () => {
-  return <div>123</div>;
+  return <>123123</>;
 };

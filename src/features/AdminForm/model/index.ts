@@ -1,1 +1,1 @@
-export type { LoginArgs } from './type';
+export type { LoginArgs, LoginResponse } from './type';
