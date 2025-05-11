@@ -1,0 +1,1 @@
+export { AdminGoodsUpdateForm } from './types';

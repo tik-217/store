@@ -1,10 +1,41 @@
-import { ProductCard } from '@/entities/ProductCard';
-import { useGetProducts } from '../api';
-import { ProductsListLoader } from './';
+import { useEffect, useRef, useState } from 'react';
 import { clsx } from 'clsx';
+import { useGetProducts } from '@/shared/api';
+import { ProductsListLoader } from './';
+import { ProductCard } from '@/entities/ProductCard';
+import { useAnimationNumber } from './hooks/useAnimationNumber';
 
 export const ProductsList = () => {
-  const { data, isPending } = useGetProducts();
+  const container = useRef<HTMLDivElement | null>(null);
+  const containerProduct = useRef<HTMLDivElement | null>(null);
+  const [amountNumber, setAmountNumber] = useState<number | null>(null);
+  const [limitNumber, setLimitNumber] = useState<number | null>(null);
+
+  const { data, isPending, isSuccess } = useGetProducts({});
+
+  useAnimationNumber({
+    container,
+    finalNumber: amountNumber,
+    animationName: 'amountNumber',
+    isSuccess,
+  });
+
+  useAnimationNumber({
+    container,
+    finalNumber: limitNumber,
+    animationName: 'limitNumber',
+    isSuccess,
+  });
+
+  useEffect(() => {
+    if (data) setAmountNumber(data.total);
+    // eslint-disable-next-line
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (data) setLimitNumber(data.limit);
+    // eslint-disable-next-line
+  }, [isSuccess]);
 
   return (
     <>
@@ -16,39 +47,45 @@ export const ProductsList = () => {
 
       {data && (
         <>
-          <div className={'flex gap-[20px] mt-[-20px]'}>
+          <div className={'flex gap-[20px] mt-[-20px]'} ref={container}>
             <div>
-              <span>
-                Кол товаров: <span className={'font-bold'}>{data.total}</span>
+              <span>Кол товаров: </span>
+              <span className={'font-bold'} data-animate={'amountNumber'}>
+                {data.total}
               </span>
             </div>
             <div>
-              <span>
-                На странице: <span className={'font-bold'}>{data.limit}</span>
+              <span>На странице: </span>
+              <span className={'font-bold'} data-animate={'limitNumber'}>
+                {data.limit}
               </span>
             </div>
           </div>
 
-          {data.products.map((el, i) => (
-            <ProductCard
-              title={el.title}
-              description={el.description}
-              images={el.images}
-              firstImagePriority={i === 0}
-              key={el.id}
-              content={{
-                brand: el.brand,
-                category: el.category,
-                width: el.dimensions.width,
-                height: el.dimensions.height,
-                availabilityStatus: el.availabilityStatus,
-              }}
-              footer={{
-                price: el.price,
-                discountPercentage: el.discountPercentage,
-              }}
-            />
-          ))}
+          <div className={'flex flex-col gap-2'}>
+            {data.products.map((el, i) => (
+              <div ref={containerProduct} key={el.id}>
+                <ProductCard
+                  title={el.title}
+                  description={el.description}
+                  images={el.images}
+                  firstImagePriority={i === 0}
+                  key={el.id}
+                  content={{
+                    brand: el.brand,
+                    category: el.category,
+                    width: el.dimensions.width,
+                    height: el.dimensions.height,
+                    availabilityStatus: el.availabilityStatus,
+                  }}
+                  footer={{
+                    price: el.price,
+                    discountPercentage: el.discountPercentage,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </>
       )}
     </>

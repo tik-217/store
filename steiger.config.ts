@@ -8,6 +8,7 @@ export default defineConfig([
     ignores: ['**/__mocks__/**', './src/shared/shadcn'],
     rules: {
       'fsd/no-reserved-folder-names': 'off',
+      'fsd/insignificant-slice': 'warn',
     },
   },
 ]);

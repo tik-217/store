@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/shadcn';
-import { CreatedProductCardProps } from '@/entities/CreatedProduct/model/types';
+import { CreatedProductCardProps } from '../model';
 
 export const CreatedProduct = ({
   title,

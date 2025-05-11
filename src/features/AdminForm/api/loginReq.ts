@@ -1,11 +1,14 @@
-import { axiosInstance } from '@/shared/api';
 import { LoginArgs } from '../model';
 import { LoginResponse } from '@/features/AdminForm/model/type';
+import axios from 'axios';
 
 export async function loginReq(loginData: LoginArgs) {
-  return axiosInstance<LoginResponse>({
+  return axios<{ success: boolean; data: LoginResponse }>({
     method: 'POST',
-    url: '/auth/login',
+    url: '/api/login',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     data: loginData,
   }).then(({ data }) => data);
 }

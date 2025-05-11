@@ -1,1 +1,1 @@
-export { setSearchProduct, searchProductReducer } from './model';
+export { setProductToUpdate, searchProductReducer } from './model';

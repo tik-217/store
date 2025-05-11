@@ -6,7 +6,6 @@ export const createProductReq = async ({
 }: {
   data: ICreateProductFormData;
 }) => {
-  console.log('data', data);
   return axiosInstance<ICreateProductFormData>({
     method: 'POST',
     url: '/products/add',

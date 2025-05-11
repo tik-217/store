@@ -1,14 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import { getProductsReq } from '../requests/getProductsReq';
+import { getProductsReq } from '@/shared/api';
 
-export const useGetProducts = (search?: string) => {
+export const useGetProducts = ({
+  limit,
+  search,
+}: {
+  limit?: number;
+  search?: string;
+}) => {
   return useQuery({
-    queryKey: ['product', search],
+    queryKey: ['product'],
     queryFn: () =>
-      getProductsReq({ search }).catch((err) => {
+      getProductsReq({ limit, search }).catch((err) => {
         console.log(err);
         throw new Error(err);
       }),
-    enabled: !!search?.length,
   });
 };

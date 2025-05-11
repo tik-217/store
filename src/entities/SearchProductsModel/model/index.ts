@@ -1,1 +1,1 @@
-export { setSearchProduct, searchProductReducer } from './store';
+export { setProductToUpdate, searchProductReducer } from './slice';

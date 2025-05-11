@@ -107,3 +107,4 @@ export {
   FormField,
 } from './components/ui/form';
 export { LoginForm } from './components/login-form';
+export { Toaster } from './components/ui/sonner';

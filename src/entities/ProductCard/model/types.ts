@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 interface ProductContent {
   brand?: string;
   category: string;

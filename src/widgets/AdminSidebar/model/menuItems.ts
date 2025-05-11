@@ -3,7 +3,6 @@ import { Store } from 'lucide-react';
 export const menuItems = [
   {
     title: 'Товары',
-    url: '/admin/goods',
     icon: Store,
     isActive: true,
     items: [

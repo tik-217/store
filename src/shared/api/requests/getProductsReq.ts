@@ -1,12 +1,21 @@
 import { axiosInstance } from '@/shared/api';
-import { ProductsResponse } from '@/features/ProductsList/model';
+import { Products } from '../model';
 
-export async function getProductsReq({ search }: { search?: string }) {
-  return axiosInstance<ProductsResponse>({
+export async function getProductsReq({
+  limit,
+  search,
+}: {
+  limit?: number;
+  search?: string;
+}) {
+  const searchPath = search !== undefined ? '/search' : '';
+
+  return axiosInstance<Products>({
     method: 'GET',
-    url: `/products${search && '/search'}`,
+    url: `/products${searchPath}`,
     params: {
       q: search,
+      limit,
     },
   }).then(({ data }) => data);
 }

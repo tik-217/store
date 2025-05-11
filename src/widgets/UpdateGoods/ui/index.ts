@@ -1,0 +1,1 @@
+export { UpdateGoods } from './UpdateGoods';
