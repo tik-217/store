@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   Card,
   CardContent,
@@ -7,16 +8,16 @@ import {
   CardTitle,
 } from '@/shared/shadcn';
 import { ProductCarousel } from './ProductCarousel';
-import { ProductCardProps } from '@/entities/ProductCard/model/types';
+import { ProductCardProps } from '../model';
 
-export const ProductCard = ({
+export const ProductCard = memo(function ProductCard({
   title,
   description,
   content: { brand, category, width, height, availabilityStatus },
   images,
   firstImagePriority = false,
   footer,
-}: ProductCardProps) => {
+}: ProductCardProps) {
   return (
     <Card className={'gap-[10px]'}>
       <CardHeader>
@@ -88,4 +89,4 @@ export const ProductCard = ({
       )}
     </Card>
   );
-};
+});

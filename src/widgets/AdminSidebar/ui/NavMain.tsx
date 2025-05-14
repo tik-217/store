@@ -14,10 +14,20 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
+  useSidebar,
 } from '@/shared/shadcn';
 import { NavMainProps } from '../model';
+import { useLogout } from '@/features/Logout';
 
 export function NavMain({ items }: NavMainProps) {
+  const { setOpenMobile } = useSidebar();
+
+  const { mutate: logoutReq } = useLogout();
+
+  async function handleLogout() {
+    logoutReq();
+  }
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Магазин</SidebarGroupLabel>
@@ -42,7 +52,10 @@ export function NavMain({ items }: NavMainProps) {
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <Link href={subItem.url}>
+                        <Link
+                          href={subItem.url}
+                          onClick={() => setOpenMobile(false)}
+                        >
                           <span>{subItem.title}</span>
                         </Link>
                       </SidebarMenuSubButton>
@@ -53,6 +66,9 @@ export function NavMain({ items }: NavMainProps) {
             </SidebarMenuItem>
           </Collapsible>
         ))}
+        <SidebarMenuButton onClick={() => handleLogout()}>
+          Выйти из аккаунта
+        </SidebarMenuButton>
       </SidebarMenu>
     </SidebarGroup>
   );

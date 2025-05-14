@@ -1,0 +1,1 @@
+export { UpdateGoodsForm } from './ui';

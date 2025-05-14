@@ -1,9 +1,11 @@
+'use server';
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { QueryProvider, TokenRefreshProvider } from '@/shared/providers';
+import { StoreProvider } from '@/app/providers';
 import '@/app/globals.css';
-import { QueryProvider } from '@/shared/providers';
-import { StoreProvider } from '@/shared/providers';
+import { auth } from '@/shared/api';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -15,7 +17,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
+const metadataConfig: Metadata = {
   title: 'The Goods Store',
   description:
     'The Goods Store — ваш надежный онлайн-магазин с широким выбором товаров для дома, электроники, одежды и многого другого. Быстрая доставка и отличные цены!',
@@ -23,17 +25,24 @@ export const metadata: Metadata = {
   robots: 'index, follow',
 };
 
-export default function RootLayout({
+export async function generateMetadata(): Promise<Metadata> {
+  return metadataConfig;
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
+  await auth();
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <StoreProvider>
+          <TokenRefreshProvider />
           <QueryProvider>{children}</QueryProvider>
         </StoreProvider>
       </body>

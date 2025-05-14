@@ -1,1 +1,2 @@
-export { setSearchProduct, searchProductReducer } from './model';
+export { setProductToUpdate, searchProductReducer } from './model';
+export type { ICreateProductForm } from './model';

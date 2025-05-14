@@ -1,20 +1,22 @@
 'use client';
 
-import * as React from 'react';
-import * as PopoverPrimitive from '@radix-ui/react-popover';
+import { ComponentProps } from 'react';
+import {
+  Root,
+  Trigger,
+  Content,
+  Portal,
+  Anchor,
+} from '@radix-ui/react-popover';
 
 import { cn } from '@/shared/shadcn/lib/utils';
 
-function Popover({
-  ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Root>) {
-  return <PopoverPrimitive.Root data-slot="popover" {...props} />;
+function Popover({ ...props }: ComponentProps<typeof Root>) {
+  return <Root data-slot="popover" {...props} />;
 }
 
-function PopoverTrigger({
-  ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {
-  return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
+function PopoverTrigger({ ...props }: ComponentProps<typeof Trigger>) {
+  return <Trigger data-slot="popover-trigger" {...props} />;
 }
 
 function PopoverContent({
@@ -22,10 +24,10 @@ function PopoverContent({
   align = 'center',
   sideOffset = 4,
   ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Content>) {
+}: ComponentProps<typeof Content>) {
   return (
-    <PopoverPrimitive.Portal forceMount={true}>
-      <PopoverPrimitive.Content
+    <Portal>
+      <Content
         data-slot="popover-content"
         align={align}
         sideOffset={sideOffset}
@@ -35,14 +37,12 @@ function PopoverContent({
         )}
         {...props}
       />
-    </PopoverPrimitive.Portal>
+    </Portal>
   );
 }
 
-function PopoverAnchor({
-  ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Anchor>) {
-  return <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />;
+function PopoverAnchor({ ...props }: ComponentProps<typeof Anchor>) {
+  return <Anchor data-slot="popover-anchor" {...props} />;
 }
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor };

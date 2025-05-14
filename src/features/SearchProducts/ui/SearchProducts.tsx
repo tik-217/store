@@ -1,18 +1,29 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Label, Input, ScrollArea, Separator } from '@/shared/shadcn';
+import { Input, Label } from '@/shared/shadcn';
 import { useDebounce } from '@/shared/inputHelpers';
 import { useGetProducts } from '@/shared/api';
-import { Loader2 } from 'lucide-react';
+import { SearchDropdown, SearchResult } from '@/shared/ui';
+import { useGetOneProduct } from '@/shared/api';
+import { useAppDispatch } from '@/shared/model';
+import { setProductToUpdate } from '@/entities/SearchProductsModel';
 
 export const SearchProducts = () => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('');
+  const [productIsSelected, setProductIsSelected] = useState(false);
+  const [inputValue, setInputValue] = useState('');
   const [searchText, setSearchText] = useState('');
-  const debounceValue = useDebounce(value, 700);
+  const [searchProductId, setSearchProductId] = useState(0);
+  const debounceValue = useDebounce(inputValue, 700);
 
-  const { data, isPending } = useGetProducts(searchText);
+  const dispatch = useAppDispatch();
+
+  const { data: allProducts, isPending: allProductsPending } = useGetProducts(
+    searchText,
+    undefined,
+  );
+  const { data: oneProduct } = useGetOneProduct(searchProductId);
 
   useEffect(() => {
     if (debounceValue) {
@@ -21,56 +32,70 @@ export const SearchProducts = () => {
   }, [debounceValue]);
 
   useEffect(() => {
-    if (value.length) {
-      setOpen(true);
-    } else {
+    setOpen(!!inputValue.length);
+
+    return () => {
+      setProductIsSelected(false);
+    };
+  }, [inputValue]);
+
+  useEffect(() => {
+    if (productIsSelected) {
       setOpen(false);
     }
-  }, [value]);
+    // eslint-disable-next-line
+  }, [open, debounceValue]);
 
-  const customLoading = value !== searchText && !isPending;
+  useEffect(() => {
+    if (oneProduct) {
+      const { id, title, description, brand, category, price, stock } =
+        oneProduct;
+
+      dispatch(
+        setProductToUpdate({
+          id,
+          title,
+          description,
+          category,
+          brand,
+          stock: stock,
+          price: price,
+        }),
+      );
+    }
+    // eslint-disable-next-line
+  }, [searchText]);
+
+  const customLoading = inputValue !== searchText && !allProductsPending;
+
+  function searchDropdownHandler(searchProduct: SearchResult) {
+    setSearchProductId(searchProduct.id);
+    setInputValue(searchProduct.title);
+    setOpen(false);
+    setProductIsSelected(true);
+  }
 
   return (
-    <div className={'mb-[20px]'}>
+    <div>
       <Label htmlFor={'search'} className={'pb-[10px]'}>
         Найти товар
       </Label>
 
       <div className={'relative flex flex-col gap-2'}>
         <Input
-          placeholder={'Товар...'}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          type="search"
+          placeholder="Товар..."
+          className="w-full"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
         />
 
-        {open && (
-          <div className={'absolute top-[40px] w-full z-20'}>
-            <ScrollArea className="h-72 rounded-md border p-4 bg-white">
-              <h4 className="mb-4 text-sm font-bold leading-none">
-                Результат поиска
-              </h4>
-
-              {customLoading && (
-                <div className={'w-full flex justify-center'}>
-                  <Loader2 className="animate-spin" />
-                </div>
-              )}
-
-              <ul className={'list-none'}>
-                {data &&
-                  !customLoading &&
-                  data.products.map((el, i, arr) => (
-                    <li key={el.id} className={'cursor-pointer'}>
-                      <p className={'hover:bg-gray-100 py-2 pl-2'}>
-                        {el.title}
-                      </p>
-                      {arr.length !== i + 1 && <Separator />}
-                    </li>
-                  ))}
-              </ul>
-              {data && !data.products.length && 'Товар не найден.'}
-            </ScrollArea>
-          </div>
+        {open && allProducts && (
+          <SearchDropdown
+            isLoading={customLoading}
+            searchResult={allProducts.products}
+            listItemHandler={searchDropdownHandler}
+          />
         )}
       </div>
     </div>

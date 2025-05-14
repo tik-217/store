@@ -18,6 +18,7 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
       console.log('pathname is missing');
       router.push('/');
     }
+    // eslint-disable-next-line
   }, []);
 
   return <>{children}</>;

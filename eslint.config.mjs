@@ -14,10 +14,9 @@ const eslintConfig = [
     'next/core-web-vitals',
     'next/typescript',
     'prettier',
-    'plugin:fsd/all',
-    'plugin:@feature-sliced/recommended',
+    // 'plugin:fsd/all',
+    // 'plugin:@feature-sliced/recommended',
   ),
 ];
 
 export default eslintConfig;
-

@@ -1,14 +1,11 @@
 'use client';
 
 import { FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
 import { LoginForm } from '@/shared/shadcn';
-import { setLSData } from '../../../shared/localStorage';
 import { useLogin } from '../api';
 import { ErrorModal } from './ErrorModal';
 
 export const AdminForm = () => {
-  const router = useRouter();
   const { mutate: login, isError, isPending } = useLogin();
 
   function onSubmit(e: FormEvent<HTMLDivElement>) {
@@ -19,16 +16,7 @@ export const AdminForm = () => {
     const username = form.get('username') as string;
     const password = form.get('password') as string;
 
-    login(
-      { username, password },
-      {
-        onSuccess: (data) => {
-          setLSData('storeAccessToken', data.accessToken);
-
-          router.push('/');
-        },
-      },
-    );
+    login({ username, password });
   }
 
   return (
