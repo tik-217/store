@@ -47,45 +47,47 @@ export const ProductsList = () => {
 
       {data && (
         <>
-          <div className={'flex gap-[20px] mt-[-20px]'} ref={container}>
-            <div>
+          <article className={'flex gap-[20px] mt-[-20px]'} ref={container}>
+            <section>
               <span>Кол товаров: </span>
               <span className={'font-bold'} data-animate={'amountNumber'}>
                 {data.total}
               </span>
-            </div>
-            <div>
+            </section>
+            <section>
               <span>На странице: </span>
               <span className={'font-bold'} data-animate={'limitNumber'}>
                 {data.limit}
               </span>
-            </div>
-          </div>
+            </section>
+          </article>
 
-          <div className={'flex flex-col gap-2'}>
+          <ul className={'flex flex-col gap-2'}>
             {data.products.map((el, i) => (
-              <div ref={containerProduct} key={el.id}>
-                <ProductCard
-                  title={el.title}
-                  description={el.description}
-                  images={el.images}
-                  firstImagePriority={i === 0}
-                  key={el.id}
-                  content={{
-                    brand: el.brand,
-                    category: el.category,
-                    width: el.dimensions.width,
-                    height: el.dimensions.height,
-                    availabilityStatus: el.availabilityStatus,
-                  }}
-                  footer={{
-                    price: el.price,
-                    discountPercentage: el.discountPercentage,
-                  }}
-                />
-              </div>
+              <li key={el.id}>
+                <div ref={containerProduct}>
+                  <ProductCard
+                    title={el.title}
+                    description={el.description}
+                    images={el.images}
+                    firstImagePriority={i === 0}
+                    key={el.id}
+                    content={{
+                      brand: el.brand,
+                      category: el.category,
+                      width: el.dimensions.width,
+                      height: el.dimensions.height,
+                      availabilityStatus: el.availabilityStatus,
+                    }}
+                    footer={{
+                      price: el.price,
+                      discountPercentage: el.discountPercentage,
+                    }}
+                  />
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </>
       )}
     </>
