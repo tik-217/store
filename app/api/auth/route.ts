@@ -26,7 +26,6 @@ export async function POST(request: NextRequest) {
         throw new Error('Failed to refresh token');
       }
 
-      console.log('api/refresh', 'success');
       return response;
     } catch (error) {
       console.error('Error refreshing token:', error);
@@ -53,7 +52,6 @@ export async function POST(request: NextRequest) {
     console.error('auth/me error:', error);
   }
 
-  // Если токен недействителен или истёк, пробуем обновить
   if (refreshTokenCookie) {
     const refreshed = await refreshToken(refreshTokenCookie);
 

@@ -1,26 +1,58 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { jwtDecode } from 'jwt-decode';
+import { useRouter } from 'next/navigation';
+
+interface DecodeUser {
+  exp: number;
+}
 
 export function TokenRefreshProvider() {
-  useEffect(() => {
+  const router = useRouter();
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const startRefreshCycle = () => {
     const accessToken = localStorage.getItem('dj-access');
+    if (!accessToken) {
+      console.warn('No token available');
+      return;
+    }
 
-    const interval = setInterval(async () => {
-      const res = await fetch('/api/refresh', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-      });
-      const resJson = res.json();
-      const data = await resJson;
-      console.log(data);
-      console.log(123);
-    }, 1000 * 10); // каждые 5 минут
+    const decoded: DecodeUser = jwtDecode(accessToken);
+    const timeToExpire = decoded.exp * 1000 - Date.now();
+    const delay = Math.max(timeToExpire - 10_000, 5_000);
 
-    return () => clearInterval(interval);
+    timerRef.current = setInterval(async () => {
+      try {
+        const res = await fetch('/api/refresh', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        });
+
+        const { data } = await res.json();
+        if (data?.accessToken) {
+          localStorage.setItem('dj-access', data.accessToken);
+        } else {
+          throw new Error('Failed to refresh token');
+        }
+      } catch (error) {
+        console.warn('Token refresh failed:', error);
+        clearInterval(timerRef.current!);
+        router.push('/login');
+      }
+    }, delay);
+  };
+
+  useEffect(() => {
+    startRefreshCycle();
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+    // eslint-disable-next-line
   }, []);
 
   return null;

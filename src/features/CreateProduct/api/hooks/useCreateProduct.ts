@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { createProductReq } from '@/features/CreateProduct/api/createProductReq';
 import { AxiosError } from 'axios';
-import { ICreateProductFormData } from '@/features/CreateProduct/model';
+import { ICreateProductFormData } from '@/shared/validation';
 
 export const useCreateProduct = () => {
   return useMutation({

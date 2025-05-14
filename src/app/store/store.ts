@@ -1,12 +1,10 @@
-import { configureStore, Store } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { searchProductReducer } from '@/entities/SearchProductsModel';
-import { authReducer } from '@/shared/storeSlices';
 
-export const makeStore = (): Store =>
+export const makeStore = () =>
   configureStore({
     reducer: {
       searchProduct: searchProductReducer,
-      auth: authReducer,
     },
   });
 

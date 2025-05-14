@@ -13,34 +13,15 @@ import {
 import { FormProvider } from 'react-hook-form';
 import { ProductFormProps } from '../model';
 import { Loader2 } from 'lucide-react';
-import { useAnimation } from './useAnimation';
-import { useRef } from 'react';
 
 export const ProductForm = ({
   form,
   onSubmit,
   isPending,
-  formTitle,
-  oldTitle,
 }: ProductFormProps) => {
-  const container = useRef(null);
-
-  useAnimation({ newTitle: formTitle, container });
-
   return (
     <FormProvider {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className={'container space-y-8'}
-        ref={container}
-      >
-        <h2
-          className={
-            'createTitle font-black text-[25px] text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 uppercase'
-          }
-        >
-          {oldTitle ?? formTitle}
-        </h2>
+      <form onSubmit={form.handleSubmit(onSubmit)} className={'space-y-8'}>
         <div className="gap-10 grid grid-cols-2 items-baseline">
           <FormField
             control={form.control}

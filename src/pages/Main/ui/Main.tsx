@@ -1,37 +1,22 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { ProductsList } from '@/features/ProductsList';
 import { useAnimation } from './useAnimation';
 import Link from 'next/link';
 import { Button } from '@/shared/shadcn';
-import { useAppDispatch, useAppSelector } from '@/shared/model';
-import { setIsAccess } from '@/shared/storeSlices';
 
 export const Main = () => {
-  const isAccess = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
   const container = useRef(null);
 
   useAnimation({ container });
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem('access-token');
-    dispatch(setIsAccess(!!accessToken));
-  }, []);
-
   return (
     <>
       <header className={'my-[50px] w-full text-center'}>
-        {isAccess ? (
-          <Link href={'/admin'}>
-            <Button>Войти в панель</Button>
-          </Link>
-        ) : (
-          <Link href={'/admin'}>
-            <Button>Выйти</Button>
-          </Link>
-        )}
+        <Link href={'/admin/goods'}>
+          <Button>Войти в панель</Button>
+        </Link>
       </header>
       <div className={'w-full flex items-center flex-col gap-[50px]'}>
         <div

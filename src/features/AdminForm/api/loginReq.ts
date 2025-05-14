@@ -9,6 +9,6 @@ export async function loginReq(loginData: LoginArgs) {
     headers: {
       'Content-Type': 'application/json',
     },
-    data: loginData,
+    data: { ...loginData, expiresInMins: 10 },
   }).then(({ data }) => data);
 }

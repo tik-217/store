@@ -17,8 +17,8 @@ export const UpdateGoodsForm = () => {
       title: '',
       description: '',
       category: '',
-      price: '',
-      stock: '',
+      price: 0,
+      stock: 0,
       brand: '',
     },
   });
@@ -26,6 +26,8 @@ export const UpdateGoodsForm = () => {
   const productToUpdate = useAppSelector(
     (state) => state.searchProduct.productToUpdate,
   );
+
+  console.log(productToUpdate);
 
   const { mutate } = useUpdateProduct();
 
@@ -60,8 +62,6 @@ export const UpdateGoodsForm = () => {
       form={form}
       onSubmit={(data) => onSubmit(productToUpdate.id, data)}
       isPending={false}
-      formTitle={'Обновить товар'}
-      oldTitle={'Страница обновления товара'}
     />
   );
 };

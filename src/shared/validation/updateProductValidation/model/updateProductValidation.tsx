@@ -7,8 +7,8 @@ export const updateProductValidation = z
     }),
     description: z.string().trim(),
     category: z.string().trim(),
-    price: z.string(),
-    stock: z.string(),
+    price: z.coerce.number().positive('Число должно быть положительным'),
+    stock: z.coerce.number().positive('Число должно быть положительным'),
     brand: z.string().trim().optional(),
   })
   .required({

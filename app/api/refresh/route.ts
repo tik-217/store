@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
-export async function POST(req: Request) {
+export async function POST() {
   const refreshJson = (await cookies()).get('dj-refresh')?.value;
 
   if (!refreshJson) {
@@ -17,12 +17,12 @@ export async function POST(req: Request) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ refreshToken: refreshJson }),
+      body: JSON.stringify({ refreshToken: refreshJson, expiresInMins: 10 }),
       credentials: 'include',
     });
 
     if (!reqNewTokens.ok) {
-      throw new Error(`HTTP error! status: ${reqNewTokens.status}`);
+      return NextResponse.json({ success: false }, { status: 401 });
     }
 
     const newTokensJson = await reqNewTokens.json();
@@ -30,15 +30,14 @@ export async function POST(req: Request) {
       accessToken: string;
       refreshToken: string;
     };
-    console.log('data', data);
+    // console.log('data', data); // tokens
     const { accessToken, refreshToken } = newTokensJson;
 
     if (!data) {
-      throw new Error('refreshAuthSession no data');
+      return NextResponse.json({ success: false }, { status: 401 });
     }
 
     try {
-      // Создаём ответ вручную
       const response = new NextResponse(
         JSON.stringify({ success: true, data: { accessToken } }),
         {
@@ -53,7 +52,7 @@ export async function POST(req: Request) {
       response.cookies.set('dj-access', accessToken, {
         httpOnly: true,
         path: '/',
-        maxAge: 60 * 60,
+        maxAge: 60 * 10,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
       });
@@ -67,15 +66,11 @@ export async function POST(req: Request) {
       });
 
       return response;
-    } catch (error) {
+    } catch {
       console.log('Cookie set error');
       return NextResponse.json({ success: false }, { status: 401 });
     }
-  } catch (error) {
-    console.log('error 891829123123812');
-    // deleteCookies('dj-access');
-    // deleteCookies('dj-refresh');
-
+  } catch {
     return NextResponse.json({ success: false }, { status: 401 });
   }
 }

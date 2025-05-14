@@ -10,8 +10,6 @@ export interface ProductFormProps {
   form: IProductForm;
   onSubmit: SubmitHandler<IProductFormData>;
   isPending: boolean;
-  formTitle: string;
-  oldTitle?: string;
 }
 
 export type IProductFormData = z.infer<typeof createProductValidation>;

@@ -1,1 +1,1 @@
-export type { ICreateProductFormData } from './types';
+export type { UseAnimationProps } from './types';

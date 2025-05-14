@@ -6,8 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ProductForm } from '@/entities/ProductForm';
 import { CreatedProduct } from '@/entities/CreatedProduct';
 import { useCreateProduct } from '../api';
-import { ICreateProductFormData } from '@/shared/types';
-import { createProductValidation } from '@/shared/validation';
+import {
+  createProductValidation,
+  ICreateProductFormData,
+} from '@/shared/validation';
 import { Button } from '@/shared/shadcn';
 import { useAnimation } from './useAnimation';
 
@@ -54,11 +56,11 @@ export const CreateProduct = () => {
                 <CreatedProduct
                   title={data.title}
                   content={{
-                    brand: data.brand,
+                    brand: data.brand ?? '',
                     category: data.category,
                   }}
                   footer={{
-                    price: data.price,
+                    price: +data.price,
                   }}
                 />
                 <Button
@@ -72,12 +74,7 @@ export const CreateProduct = () => {
           </div>
         </div>
         <div className={'formCreateProduct'}>
-          <ProductForm
-            form={form}
-            onSubmit={onSubmit}
-            isPending={isPending}
-            formTitle={'Страница создания товара'}
-          />
+          <ProductForm form={form} onSubmit={onSubmit} isPending={isPending} />
         </div>
       </div>
     </>

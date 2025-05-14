@@ -5,7 +5,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { QueryProvider, TokenRefreshProvider } from '@/shared/providers';
 import { StoreProvider } from '@/app/providers';
 import '@/app/globals.css';
-import { auth } from '@/app/auth/api/auth';
+import { auth } from '@/shared/api';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,7 +34,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const user = await auth();
+  await auth();
 
   return (
     <html lang="en">

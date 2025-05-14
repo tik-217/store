@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       response.cookies.set('dj-access', data.accessToken, {
         httpOnly: true,
         path: '/',
-        maxAge: 15,
+        maxAge: 60 * 10,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
       });

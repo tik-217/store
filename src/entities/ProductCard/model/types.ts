@@ -1,4 +1,4 @@
-interface ProductContent {
+export interface ProductContent {
   brand?: string;
   category: string;
   width: number;
@@ -6,7 +6,7 @@ interface ProductContent {
   availabilityStatus: string;
 }
 
-interface ProductFooter {
+export interface ProductFooter {
   price: number;
   discountPercentage: number;
 }

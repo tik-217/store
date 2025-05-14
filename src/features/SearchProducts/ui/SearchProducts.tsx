@@ -19,8 +19,10 @@ export const SearchProducts = () => {
 
   const dispatch = useAppDispatch();
 
-  const { data: allProducts, isPending: allProductsPending } =
-    useGetProducts(searchText);
+  const { data: allProducts, isPending: allProductsPending } = useGetProducts(
+    searchText,
+    undefined,
+  );
   const { data: oneProduct } = useGetOneProduct(searchProductId);
 
   useEffect(() => {
@@ -30,11 +32,7 @@ export const SearchProducts = () => {
   }, [debounceValue]);
 
   useEffect(() => {
-    if (inputValue.length) {
-      setOpen(true);
-    } else {
-      setOpen(false);
-    }
+    setOpen(!!inputValue.length);
 
     return () => {
       setProductIsSelected(false);
@@ -60,13 +58,13 @@ export const SearchProducts = () => {
           description,
           category,
           brand,
-          stock: `${stock}`,
-          price: `${price}`,
+          stock: stock,
+          price: price,
         }),
       );
     }
     // eslint-disable-next-line
-  }, [oneProduct]);
+  }, [searchText]);
 
   const customLoading = inputValue !== searchText && !allProductsPending;
 
@@ -78,7 +76,7 @@ export const SearchProducts = () => {
   }
 
   return (
-    <div className={'mb-[20px]'}>
+    <div>
       <Label htmlFor={'search'} className={'pb-[10px]'}>
         Найти товар
       </Label>

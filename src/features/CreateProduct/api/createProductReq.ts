@@ -1,5 +1,5 @@
 import { axiosInstance } from '@/shared/api';
-import { ICreateProductFormData } from '../model';
+import { ICreateProductFormData } from '@/shared/validation';
 
 export const createProductReq = async ({
   data,

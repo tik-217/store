@@ -1,6 +1,5 @@
 export async function refreshAuthSession(refreshToken: string) {
   try {
-    console.log(JSON.stringify({ refreshToken: refreshToken }));
     const response = await fetch('https://dummyjson.com/auth/refresh', {
       method: 'POST',
       headers: {

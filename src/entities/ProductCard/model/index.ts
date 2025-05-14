@@ -1,1 +1,6 @@
-export type { ProductCardProps, ProductCarouselProps } from './types';
+export type {
+  ProductCardProps,
+  ProductCarouselProps,
+  ProductContent,
+  ProductFooter,
+} from './types';

@@ -9,8 +9,8 @@ export const createProductValidation = z
     category: z.string().trim().min(1, {
       message: 'Поле обязательно',
     }),
-    price: z.string(),
-    stock: z.string(),
+    price: z.number().positive('Число должно быть положительным'),
+    stock: z.number().positive('Число должно быть положительным'),
     brand: z.string().trim().optional(),
   })
   .required({

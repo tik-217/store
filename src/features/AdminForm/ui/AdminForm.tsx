@@ -1,9 +1,7 @@
 'use client';
 
 import { FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
 import { LoginForm } from '@/shared/shadcn';
-import { setLSData } from '../../../shared/localStorage';
 import { useLogin } from '../api';
 import { ErrorModal } from './ErrorModal';
 

@@ -11,7 +11,7 @@ export const ProductsList = () => {
   const [amountNumber, setAmountNumber] = useState<number | null>(null);
   const [limitNumber, setLimitNumber] = useState<number | null>(null);
 
-  const { data, isPending, isSuccess } = useGetProducts({});
+  const { data, isPending, isSuccess } = useGetProducts();
 
   useAnimationNumber({
     container,

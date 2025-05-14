@@ -17,9 +17,9 @@ export function useLogin() {
       }),
     onSuccess: ({ data }) => {
       try {
-        localStorage.setItem('access-token', data.accessToken);
+        localStorage.setItem('dj-access', data.accessToken);
 
-        router.push('/admin');
+        router.push('/admin/goods');
       } catch (error) {
         console.log(error);
       }
