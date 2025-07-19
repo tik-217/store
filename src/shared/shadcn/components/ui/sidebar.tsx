@@ -42,7 +42,6 @@ const SIDEBAR_KEYBOARD_SHORTCUT = 'b';
 
 type SidebarContextProps = {
   state: 'expanded' | 'collapsed';
-  open: boolean;
   setOpen: (open: boolean) => void;
   openMobile: boolean;
   setOpenMobile: (open: boolean) => void;
@@ -83,7 +82,7 @@ function SidebarProvider({
   const [_open, _setOpen] = useState(defaultOpen);
   const open = openProp ?? _open;
   const setOpen = useCallback(
-    (value: boolean | ((value: boolean) => boolean)) => {
+    (value: boolean | ((prevValue: boolean) => boolean)) => {
       const openState = typeof value === 'function' ? value(open) : value;
 
       if (setOpenProp) {
@@ -100,7 +99,9 @@ function SidebarProvider({
 
   // Helper to toggle the sidebar.
   const toggleSidebar = useCallback(() => {
-    return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
+    return isMobile
+      ? setOpenMobile((_prevState) => !_prevState)
+      : setOpen((_prevState) => !_prevState);
   }, [isMobile, setOpen, setOpenMobile]);
 
   // Adds a keyboard shortcut to toggle the sidebar.
@@ -124,14 +125,13 @@ function SidebarProvider({
   const contextValue = useMemo<SidebarContextProps>(
     () => ({
       state,
-      open,
       setOpen,
       isMobile,
       openMobile,
       setOpenMobile,
       toggleSidebar,
     }),
-    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar],
+    [state, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar],
   );
 
   return (
