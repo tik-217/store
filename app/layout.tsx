@@ -1,9 +1,10 @@
 'use server';
-import { ReactNode } from 'react';
+
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { QueryProvider, TokenRefreshProvider } from '@/shared/providers';
+import { ReactNode } from 'react';
 import { StoreProvider } from '@/app/providers';
+import { QueryProvider, TokenRefreshProvider } from '@/shared/providers';
 import '@/app/globals.css';
 import { auth } from '@/shared/api';
 
@@ -38,9 +39,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <StoreProvider>
           <TokenRefreshProvider />
           <QueryProvider>{children}</QueryProvider>

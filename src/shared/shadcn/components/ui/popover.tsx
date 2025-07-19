@@ -1,14 +1,7 @@
 'use client';
 
+import { Anchor, Content, Portal, Root, Trigger } from '@radix-ui/react-popover';
 import { ComponentProps } from 'react';
-import {
-  Root,
-  Trigger,
-  Content,
-  Portal,
-  Anchor,
-} from '@radix-ui/react-popover';
-
 import { cn } from '@/shared/shadcn/lib/utils';
 
 function Popover({ ...props }: ComponentProps<typeof Root>) {

@@ -1,5 +1,5 @@
+import { Loader2 } from 'lucide-react';
 import { ComponentProps } from 'react';
-import { cn } from '@/shared/shadcn/lib/utils';
 import { Button } from '@/shared/shadcn/components/ui/button';
 import {
   Card,
@@ -10,7 +10,7 @@ import {
 } from '@/shared/shadcn/components/ui/card';
 import { Input } from '@/shared/shadcn/components/ui/input';
 import { Label } from '@/shared/shadcn/components/ui/label';
-import { Loader2 } from 'lucide-react';
+import { cn } from '@/shared/shadcn/lib/utils';
 
 interface LoginFormProps extends ComponentProps<'div'> {
   isLoading?: boolean;
@@ -22,22 +22,14 @@ export function LoginForm({ className, isLoading, ...props }: LoginFormProps) {
       <Card>
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account
-          </CardDescription>
+          <CardDescription>Enter your email below to login to your account</CardDescription>
         </CardHeader>
         <CardContent>
           <form>
             <div className="flex flex-col gap-6">
               <div className="grid gap-3">
                 <Label htmlFor="username">Email</Label>
-                <Input
-                  id="username"
-                  name="username"
-                  type="text"
-                  placeholder="Username"
-                  required
-                />
+                <Input id="username" name="username" type="text" placeholder="Username" required />
               </div>
               <div className="grid gap-3">
                 <div className="flex items-center">

@@ -1,9 +1,11 @@
 'use server';
-import { cookies } from 'next/headers';
+
 import axios from 'axios';
+import { cookies } from 'next/headers';
 
 export async function auth() {
   const accessToken = (await cookies()).get('dj-access')?.value;
+
   if (!accessToken) return null;
 
   try {

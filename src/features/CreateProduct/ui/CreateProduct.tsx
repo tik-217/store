@@ -1,34 +1,30 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { useForm, UseFormReturn } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ProductForm } from '@/entities/ProductForm';
+import { useForm, UseFormReturn } from 'react-hook-form';
+import { useRef, useState } from 'react';
 import { CreatedProduct } from '@/entities/CreatedProduct';
-import { useCreateProduct } from '../api';
-import {
-  createProductValidation,
-  ICreateProductFormData,
-} from '@/shared/validation';
+import { ProductForm } from '@/entities/ProductForm';
 import { Button } from '@/shared/shadcn';
+import { createProductValidation, ICreateProductFormData } from '@/shared/validation';
+import { useCreateProduct } from '../api';
 import { useAnimation } from './useAnimation';
 
 export const CreateProduct = () => {
   const container = useRef(null);
   const [resetForm, setResetForm] = useState(false);
 
-  const form: UseFormReturn<ICreateProductFormData> =
-    useForm<ICreateProductFormData>({
-      resolver: zodResolver(createProductValidation),
-      defaultValues: {
-        title: '',
-        description: '',
-        price: undefined,
-        stock: undefined,
-        category: '',
-        brand: '',
-      },
-    });
+  const form: UseFormReturn<ICreateProductFormData> = useForm<ICreateProductFormData>({
+    resolver: zodResolver(createProductValidation),
+    defaultValues: {
+      title: '',
+      description: '',
+      price: undefined,
+      stock: undefined,
+      category: '',
+      brand: '',
+    },
+  });
   const { mutate, data, isPending, isSuccess } = useCreateProduct();
 
   function onSubmit(values: ICreateProductFormData) {
@@ -63,10 +59,7 @@ export const CreateProduct = () => {
                     price: +data.price,
                   }}
                 />
-                <Button
-                  className={'w-min mt-[30px]'}
-                  onClick={() => setResetForm(true)}
-                >
+                <Button className={'w-min mt-[30px]'} onClick={() => setResetForm(true)}>
                   Создать товар
                 </Button>
               </div>

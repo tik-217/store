@@ -29,6 +29,7 @@ export async function POST(request: NextRequest) {
       return response;
     } catch (error) {
       console.error('Error refreshing token:', error);
+
       return false;
     }
   }
@@ -44,6 +45,7 @@ export async function POST(request: NextRequest) {
 
     if (meResponse.ok) {
       url.pathname = '/admin';
+
       return NextResponse.rewrite(url, meResponse);
     } else {
       console.warn('auth/me failed, attempting token refresh...');
@@ -61,5 +63,6 @@ export async function POST(request: NextRequest) {
   }
 
   console.error('Authentication failed: unable to refresh token');
+
   return NextResponse.json({ success: false }, { status: 401 });
 }

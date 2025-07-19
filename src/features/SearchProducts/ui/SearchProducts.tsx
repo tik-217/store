@@ -1,13 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Input, Label } from '@/shared/shadcn';
-import { useDebounce } from '@/shared/inputHelpers';
-import { useGetProducts } from '@/shared/api';
-import { SearchDropdown, SearchResult } from '@/shared/ui';
-import { useGetOneProduct } from '@/shared/api';
-import { useAppDispatch } from '@/shared/model';
 import { setProductToUpdate } from '@/entities/SearchProductsModel';
+import { useGetOneProduct, useGetProducts } from '@/shared/api';
+import { useDebounce } from '@/shared/inputHelpers';
+import { useAppDispatch } from '@/shared/model';
+import { Input, Label } from '@/shared/shadcn';
+import { SearchDropdown, SearchResult } from '@/shared/ui';
 
 export const SearchProducts = () => {
   const [open, setOpen] = useState(false);
@@ -48,8 +47,7 @@ export const SearchProducts = () => {
 
   useEffect(() => {
     if (oneProduct) {
-      const { id, title, description, brand, category, price, stock } =
-        oneProduct;
+      const { id, title, description, brand, category, price, stock } = oneProduct;
 
       dispatch(
         setProductToUpdate({

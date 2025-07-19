@@ -1,14 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { ProductForm } from '@/entities/ProductForm';
-import {
-  AdminGoodsUpdateForm,
-  updateProductValidation,
-} from '@/shared/validation';
-import { useAppSelector } from '@/shared/model';
-import { useUpdateProduct } from '../api';
 import { toast } from 'sonner';
 import { useEffect } from 'react';
+import { ProductForm } from '@/entities/ProductForm';
+import { useAppSelector } from '@/shared/model';
+import { AdminGoodsUpdateForm, updateProductValidation } from '@/shared/validation';
+import { useUpdateProduct } from '../api';
 
 export const UpdateGoodsForm = () => {
   const form = useForm<AdminGoodsUpdateForm>({
@@ -23,9 +20,7 @@ export const UpdateGoodsForm = () => {
     },
   });
 
-  const productToUpdate = useAppSelector(
-    (state) => state.searchProduct.productToUpdate,
-  );
+  const productToUpdate = useAppSelector((state) => state.searchProduct.productToUpdate);
 
   console.log(productToUpdate);
 

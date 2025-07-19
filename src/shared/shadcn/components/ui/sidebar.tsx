@@ -1,21 +1,18 @@
 'use client';
 
-import {
-  createContext,
-  useContext,
-  useMemo,
-  useCallback,
-  useState,
-  useEffect,
-  ComponentProps,
-  CSSProperties,
-} from 'react';
 import { Slot } from '@radix-ui/react-slot';
-import { VariantProps, cva } from 'class-variance-authority';
+import { cva, VariantProps } from 'class-variance-authority';
 import { PanelLeftIcon } from 'lucide-react';
-
-import { useIsMobile } from '@/shared/shadcn/hooks/use-mobile';
-import { cn } from '@/shared/shadcn/lib/utils';
+import {
+  ComponentProps,
+  createContext,
+  CSSProperties,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { Button } from '@/shared/shadcn/components/ui/button';
 import { Input } from '@/shared/shadcn/components/ui/input';
 import { Separator } from '@/shared/shadcn/components/ui/separator';
@@ -33,6 +30,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/shared/shadcn/components/ui/tooltip';
+import { useIsMobile } from '@/shared/shadcn/hooks/use-mobile';
+import { cn } from '@/shared/shadcn/lib/utils';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -55,6 +54,7 @@ const SidebarContext = createContext<SidebarContextProps | null>(null);
 
 function useSidebar() {
   const context = useContext(SidebarContext);
+
   if (!context) {
     throw new Error('useSidebar must be used within a SidebarProvider.');
   }
@@ -85,6 +85,7 @@ function SidebarProvider({
   const setOpen = useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
       const openState = typeof value === 'function' ? value(open) : value;
+
       if (setOpenProp) {
         setOpenProp(openState);
       } else {
@@ -105,16 +106,14 @@ function SidebarProvider({
   // Adds a keyboard shortcut to toggle the sidebar.
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (
-        event.key === SIDEBAR_KEYBOARD_SHORTCUT &&
-        (event.metaKey || event.ctrlKey)
-      ) {
+      if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
         event.preventDefault();
         toggleSidebar();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
+
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [toggleSidebar]);
 
@@ -262,11 +261,7 @@ function Sidebar({
   );
 }
 
-function SidebarTrigger({
-  className,
-  onClick,
-  ...props
-}: ComponentProps<typeof Button>) {
+function SidebarTrigger({ className, onClick, ...props }: ComponentProps<typeof Button>) {
   const { toggleSidebar } = useSidebar();
 
   return (
@@ -360,10 +355,7 @@ function SidebarFooter({ className, ...props }: ComponentProps<'div'>) {
   );
 }
 
-function SidebarSeparator({
-  className,
-  ...props
-}: ComponentProps<typeof Separator>) {
+function SidebarSeparator({ className, ...props }: ComponentProps<typeof Separator>) {
   return (
     <Separator
       data-slot="sidebar-separator"
@@ -618,12 +610,7 @@ function SidebarMenuSkeleton({
       className={cn('flex h-8 items-center gap-2 rounded-md px-2', className)}
       {...props}
     >
-      {showIcon && (
-        <Skeleton
-          className="size-4 rounded-md"
-          data-sidebar="menu-skeleton-icon"
-        />
-      )}
+      {showIcon && <Skeleton className="size-4 rounded-md" data-sidebar="menu-skeleton-icon" />}
       <Skeleton
         className="h-4 max-w-(--skeleton-width) flex-1"
         data-sidebar="menu-skeleton-text"

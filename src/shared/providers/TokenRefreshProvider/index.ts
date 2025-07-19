@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { useRouter } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 
 interface DecodeUser {
   exp: number;
@@ -14,8 +14,10 @@ export function TokenRefreshProvider() {
 
   const startRefreshCycle = () => {
     const accessToken = localStorage.getItem('dj-access');
+
     if (!accessToken) {
       console.warn('No token available');
+
       return;
     }
 
@@ -32,6 +34,7 @@ export function TokenRefreshProvider() {
         });
 
         const { data } = await res.json();
+
         if (data?.accessToken) {
           localStorage.setItem('dj-access', data.accessToken);
         } else {
@@ -47,6 +50,7 @@ export function TokenRefreshProvider() {
 
   useEffect(() => {
     startRefreshCycle();
+
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current);

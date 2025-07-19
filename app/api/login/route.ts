@@ -15,6 +15,7 @@ export async function POST(request: Request) {
   })
     .then(({ data }) => {
       const response = NextResponse.json({ success: true, data: data });
+
       response.cookies.set('dj-access', data.accessToken, {
         httpOnly: true,
         path: '/',

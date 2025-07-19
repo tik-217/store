@@ -19,9 +19,7 @@ export const CreatedProduct = ({
       <CardHeader>
         <CardTitle>Продукт - {title}</CardTitle>
         {description && (
-          <CardDescription
-            className={'max-w-[400px] overflow-hidden line-clamp-2'}
-          >
+          <CardDescription className={'max-w-[400px] overflow-hidden line-clamp-2'}>
             Описание: {description}
           </CardDescription>
         )}
@@ -30,16 +28,10 @@ export const CreatedProduct = ({
         <div>
           <div className={'grid gap-1 grid-flow-col'}>
             <span>
-              <span className={'text-muted-foreground text-[14px]'}>
-                Бренд:
-              </span>{' '}
-              {brand}
+              <span className={'text-muted-foreground text-[14px]'}>Бренд:</span> {brand}
             </span>
             <span>
-              <span className={'text-muted-foreground text-[14px]'}>
-                Категория:
-              </span>{' '}
-              {category}
+              <span className={'text-muted-foreground text-[14px]'}>Категория:</span> {category}
             </span>
           </div>
         </div>
@@ -48,10 +40,8 @@ export const CreatedProduct = ({
         <CardFooter>
           <div className={'flex gap-2'}>
             <span>
-              <span className={'text-muted-foreground text-[14px]'}>
-                Стоимость:
-              </span>{' '}
-              {footer.price}$
+              <span className={'text-muted-foreground text-[14px]'}>Стоимость:</span> {footer.price}
+              $
             </span>
           </div>
         </CardFooter>

@@ -1,6 +1,6 @@
-import { logoutReq } from '@/features/Logout/api/logoutReq';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { logoutReq } from '@/features/Logout/api/logoutReq';
 
 export const useLogout = () => {
   const router = useRouter();

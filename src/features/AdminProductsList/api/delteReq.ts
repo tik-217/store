@@ -1,5 +1,5 @@
-import { axiosInstance } from '@/shared/api';
 import { DeleteProduct } from '@/features/AdminProductsList/model';
+import { axiosInstance } from '@/shared/api';
 
 export function deleteReq({ productId }: { productId: number }) {
   return axiosInstance<DeleteProduct>({

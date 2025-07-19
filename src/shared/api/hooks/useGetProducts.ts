@@ -1,10 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getProductsReq } from '@/shared/api';
 
-export const useGetProducts = (
-  search?: string,
-  limit: number | undefined = 10,
-) => {
+export const useGetProducts = (search?: string, limit: number | undefined = 10) => {
   return useQuery({
     queryKey: ['product', search],
     queryFn: () =>

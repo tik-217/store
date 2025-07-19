@@ -1,5 +1,7 @@
 'use client';
 
+import { Loader2 } from 'lucide-react';
+import { FormProvider } from 'react-hook-form';
 import {
   Button,
   FormControl,
@@ -10,15 +12,9 @@ import {
   FormMessage,
   Input,
 } from '@/shared/shadcn';
-import { FormProvider } from 'react-hook-form';
 import { ProductFormProps } from '../model';
-import { Loader2 } from 'lucide-react';
 
-export const ProductForm = ({
-  form,
-  onSubmit,
-  isPending,
-}: ProductFormProps) => {
+export const ProductForm = ({ form, onSubmit, isPending }: ProductFormProps) => {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className={'space-y-8'}>
@@ -115,9 +111,8 @@ export const ProductForm = ({
           />
         </div>
         <FormDescription>
-          Предупреждение: Запрос на создание товара произойдет, но он не
-          появится в списке всех товаров. Это вызвано ограничением сервиса
-          dummyjson.com
+          Предупреждение: Запрос на создание товара произойдет, но он не появится в списке всех
+          товаров. Это вызвано ограничением сервиса dummyjson.com
         </FormDescription>
         <Button type="submit" disabled={isPending}>
           {isPending && <Loader2 className="animate-spin" />}

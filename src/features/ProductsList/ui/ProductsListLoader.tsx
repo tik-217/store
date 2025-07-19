@@ -1,5 +1,5 @@
-import { ProductCardSkeleton } from '@/entities/ProductCard';
 import { v4 as uuidv4 } from 'uuid';
+import { ProductCardSkeleton } from '@/entities/ProductCard';
 
 export function ProductsListLoader({ isPending }: { isPending: boolean }) {
   return (

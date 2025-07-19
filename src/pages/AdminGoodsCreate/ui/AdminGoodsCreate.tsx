@@ -1,14 +1,15 @@
 'use client';
 
 import { useRef } from 'react';
+import { CreateProduct } from '@/features/CreateProduct';
 import { AdminGoodsLayout } from '@/widgets/AdminGoodsLayout';
 import { useAnimation } from '@/widgets/UpdateGoods';
-import { CreateProduct } from '@/features/CreateProduct';
 
 export const AdminGoodsCreate = () => {
   const formTitle = 'Создать товар';
   const oldTitle = 'Страница создания товара';
   const container = useRef(null);
+
   useAnimation({ newTitle: formTitle, container });
 
   return (

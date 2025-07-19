@@ -1,6 +1,6 @@
-import { LoginArgs } from '../model';
-import { LoginResponse } from '@/features/AdminForm/model/type';
 import axios from 'axios';
+import { LoginResponse } from '@/features/AdminForm/model/type';
+import { LoginArgs } from '../model';
 
 export async function loginReq(loginData: LoginArgs) {
   return axios<{ success: boolean; data: LoginResponse }>({
