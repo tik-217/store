@@ -1,7 +1,7 @@
-import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { RefObject } from 'react';
+import gsap from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
+import { RefObject } from 'react';
 
 gsap.registerPlugin(TextPlugin, useGSAP);
 

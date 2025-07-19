@@ -1,5 +1,5 @@
-import { deleteReq } from '../delteReq';
 import { useMutation } from '@tanstack/react-query';
+import { deleteReq } from '../delteReq';
 
 export const useDeleteProduct = () => {
   return useMutation({

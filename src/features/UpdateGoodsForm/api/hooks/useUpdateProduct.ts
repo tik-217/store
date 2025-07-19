@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-import { updateProductReq } from '../updateProductReq';
-import { AdminGoodsUpdateForm } from '@/shared/validation';
 import { AxiosError } from 'axios';
+import { AdminGoodsUpdateForm } from '@/shared/validation';
+import { updateProductReq } from '../updateProductReq';
 
 interface UpdateProductProps {
   productId: number;

@@ -1,5 +1,5 @@
-import { Product } from '@/shared/api';
 import { ProductContent, ProductFooter } from '@/entities/ProductCard';
+import { Product } from '@/shared/api';
 
 export interface DeleteProduct extends Product {
   isDeleted: boolean;

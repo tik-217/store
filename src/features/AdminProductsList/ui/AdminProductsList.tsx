@@ -1,10 +1,10 @@
+import { toast } from 'sonner';
 import { memo, useCallback, useMemo } from 'react';
 import { ProductCard } from '@/entities/ProductCard';
 import { useGetProducts } from '@/shared/api';
-import { useDeleteProduct } from '../api';
-import { toast } from 'sonner';
 import { Toaster } from '@/shared/shadcn';
 import { DeletePopover } from '@/shared/ui';
+import { useDeleteProduct } from '../api';
 import { ProductCardDataReturn } from '../model';
 
 export const AdminProductsList = memo(function AdminProductsList() {

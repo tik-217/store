@@ -15,9 +15,7 @@ export const ProductCardSkeleton = () => {
         <CardTitle>
           <Skeleton className="h-4 w-full" />
         </CardTitle>
-        <CardDescription
-          className={'max-w-[400px] h-[32px] overflow-hidden line-clamp-4'}
-        >
+        <CardDescription className={'max-w-[400px] h-[32px] overflow-hidden line-clamp-4'}>
           <Skeleton className="h-8 w-full" />
         </CardDescription>
       </CardHeader>

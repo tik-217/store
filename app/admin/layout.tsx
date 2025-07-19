@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { AdminSidebar } from '@/widgets/AdminSidebar';
 import { AdminProvider } from '@/shared/providers/AdminProvider';
+import { AdminSidebar } from '@/widgets/AdminSidebar';
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (

@@ -4,11 +4,7 @@ import { UseAnimationProps } from '@/features/CreateProduct/model/types';
 
 gsap.registerPlugin(useGSAP);
 
-export const useAnimation = ({
-  resetForm,
-  isSuccess,
-  container,
-}: UseAnimationProps) => {
+export const useAnimation = ({ resetForm, isSuccess, container }: UseAnimationProps) => {
   useGSAP(
     () => {
       if (resetForm) {

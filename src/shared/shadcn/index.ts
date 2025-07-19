@@ -1,8 +1,4 @@
-export {
-  Alert,
-  AlertTitle,
-  AlertDescription,
-} from '@/shared/shadcn/components/ui/alert';
+export { Alert, AlertTitle, AlertDescription } from '@/shared/shadcn/components/ui/alert';
 export { Button, buttonVariants } from '@/shared/shadcn/components/ui/button';
 export {
   Card,

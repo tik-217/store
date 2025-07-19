@@ -11,8 +11,8 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@/shared/shadcn';
-import { NavMain } from './NavMain';
 import { menuItems } from '../model';
+import { NavMain } from './NavMain';
 
 export const AdminSidebar = ({ children }: { children: ReactNode }) => {
   return (

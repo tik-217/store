@@ -7,8 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/shadcn';
-import { ProductCarousel } from './ProductCarousel';
 import { ProductCardProps } from '../model';
+import { ProductCarousel } from './ProductCarousel';
 
 export const ProductCard = memo(function ProductCard({
   title,
@@ -23,9 +23,7 @@ export const ProductCard = memo(function ProductCard({
       <CardHeader>
         <CardTitle>Продукт - {title}</CardTitle>
         {description && (
-          <CardDescription
-            className={'max-w-[400px] overflow-hidden line-clamp-2'}
-          >
+          <CardDescription className={'max-w-[400px] overflow-hidden line-clamp-2'}>
             Описание: {description}
           </CardDescription>
         )}
@@ -34,33 +32,19 @@ export const ProductCard = memo(function ProductCard({
         <div>
           <div className={'grid gap-1 grid-rows-3 grid-flow-col'}>
             <span>
-              <span className={'text-muted-foreground text-[14px]'}>
-                Бренд:
-              </span>{' '}
-              {brand}
+              <span className={'text-muted-foreground text-[14px]'}>Бренд:</span> {brand}
             </span>
             <span>
-              <span className={'text-muted-foreground text-[14px]'}>
-                Категория:
-              </span>{' '}
-              {category}
+              <span className={'text-muted-foreground text-[14px]'}>Категория:</span> {category}
             </span>
             <span>
-              <span className={'text-muted-foreground text-[14px]'}>
-                Ширина:
-              </span>{' '}
-              {width}
+              <span className={'text-muted-foreground text-[14px]'}>Ширина:</span> {width}
             </span>
             <span>
-              <span className={'text-muted-foreground text-[14px]'}>
-                Высота:
-              </span>{' '}
-              {height}
+              <span className={'text-muted-foreground text-[14px]'}>Высота:</span> {height}
             </span>
             <span>
-              <span className={'text-muted-foreground text-[14px]'}>
-                Доступность:
-              </span>{' '}
+              <span className={'text-muted-foreground text-[14px]'}>Доступность:</span>{' '}
               {availabilityStatus}
             </span>
           </div>
@@ -73,15 +57,11 @@ export const ProductCard = memo(function ProductCard({
         <CardFooter>
           <div className={'flex gap-2'}>
             <span>
-              <span className={'text-muted-foreground text-[14px]'}>
-                Стоимость:
-              </span>{' '}
-              {footer.price}$
+              <span className={'text-muted-foreground text-[14px]'}>Стоимость:</span> {footer.price}
+              $
             </span>
             <span>
-              <span className={'text-muted-foreground text-[14px]'}>
-                Скидка:
-              </span>{' '}
+              <span className={'text-muted-foreground text-[14px]'}>Скидка:</span>{' '}
               {footer.discountPercentage}%
             </span>
           </div>

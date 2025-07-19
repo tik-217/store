@@ -16,6 +16,7 @@ export async function refreshAuthSession(refreshToken: string) {
     return await response.json();
   } catch (error) {
     console.error('Error while refreshing session:', error);
+
     return null;
   }
 }

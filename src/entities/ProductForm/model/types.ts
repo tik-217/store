@@ -1,10 +1,8 @@
+import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 import { z } from 'zod';
 import { createProductValidation } from '@/shared/validation';
-import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
-export type IProductForm = UseFormReturn<
-  z.infer<typeof createProductValidation>
->;
+export type IProductForm = UseFormReturn<z.infer<typeof createProductValidation>>;
 
 export interface ProductFormProps {
   form: IProductForm;

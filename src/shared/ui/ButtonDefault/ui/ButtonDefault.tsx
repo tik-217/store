@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 interface IBtnDefaultProps {
   btnText: string;
@@ -6,11 +6,7 @@ interface IBtnDefaultProps {
   className: string;
 }
 
-export const ButtonDefault = ({
-  btnText,
-  linkPath,
-  className,
-}: IBtnDefaultProps) => {
+export const ButtonDefault = ({ btnText, linkPath, className }: IBtnDefaultProps) => {
   const buttonStyles = `h-10 px-6 font-semibold rounded-md border ${className} align-middle leading-10`;
 
   return (

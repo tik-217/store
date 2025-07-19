@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
 import { clsx } from 'clsx';
+import { useEffect, useRef, useState } from 'react';
+import { ProductCard } from '@/entities/ProductCard';
 import { useGetProducts } from '@/shared/api';
 import { ProductsListLoader } from './';
-import { ProductCard } from '@/entities/ProductCard';
 import { useAnimationNumber } from './hooks/useAnimationNumber';
 
 export const ProductsList = () => {
@@ -39,9 +39,7 @@ export const ProductsList = () => {
 
   return (
     <>
-      <div
-        className={clsx(isPending && 'mt-[20px]', 'flex flex-col gap-[10px]')}
-      >
+      <div className={clsx(isPending && 'mt-[20px]', 'flex flex-col gap-[10px]')}>
         <ProductsListLoader isPending={isPending} />
       </div>
 

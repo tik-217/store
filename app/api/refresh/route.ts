@@ -1,14 +1,11 @@
-import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 
 export async function POST() {
   const refreshJson = (await cookies()).get('dj-refresh')?.value;
 
   if (!refreshJson) {
-    return NextResponse.json(
-      { success: false, message: 'Missing refresh token' },
-      { status: 400 },
-    );
+    return NextResponse.json({ success: false, message: 'Missing refresh token' }, { status: 400 });
   }
 
   try {
@@ -38,17 +35,15 @@ export async function POST() {
     }
 
     try {
-      const response = new NextResponse(
-        JSON.stringify({ success: true, data: { accessToken } }),
-        {
-          status: 200,
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Credentials': 'true',
-          },
+      const response = new NextResponse(JSON.stringify({ success: true, data: { accessToken } }), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',
         },
-      );
+      });
+
       response.cookies.set('dj-access', accessToken, {
         httpOnly: true,
         path: '/',
@@ -68,6 +63,7 @@ export async function POST() {
       return response;
     } catch {
       console.log('Cookie set error');
+
       return NextResponse.json({ success: false }, { status: 401 });
     }
   } catch {

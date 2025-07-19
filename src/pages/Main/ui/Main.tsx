@@ -1,10 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { useRef } from 'react';
 import { ProductsList } from '@/features/ProductsList';
-import { useAnimation } from './useAnimation';
-import Link from 'next/link';
 import { Button } from '@/shared/shadcn';
+import { useAnimation } from './useAnimation';
 
 export const Main = () => {
   const container = useRef(null);

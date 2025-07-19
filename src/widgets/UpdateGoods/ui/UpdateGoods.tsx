@@ -1,13 +1,14 @@
+import { useRef } from 'react';
 import { SearchProducts } from '@/features/SearchProducts';
 import { UpdateGoodsForm } from '@/features/UpdateGoodsForm';
 import { Toaster } from '@/shared/shadcn';
 import { useAnimation } from './hooks/useAnimation';
-import { useRef } from 'react';
 
 export const UpdateGoods = () => {
   const formTitle = 'Обновить товар';
   const oldTitle = 'Страница обновления товара';
   const container = useRef(null);
+
   useAnimation({ newTitle: formTitle, container });
 
   return (

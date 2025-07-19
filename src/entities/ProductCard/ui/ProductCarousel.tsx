@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import {
   AspectRatio,
   Carousel,
@@ -6,13 +7,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/shared/shadcn';
-import Image from 'next/image';
 import { ProductCarouselProps } from '../model/types';
 
-export function ProductCarousel({
-  images,
-  isPriority = false,
-}: ProductCarouselProps) {
+export function ProductCarousel({ images, isPriority = false }: ProductCarouselProps) {
   return (
     <Carousel
       opts={{
@@ -31,9 +28,7 @@ export function ProductCarousel({
                   alt={el.split('/').at(-1) ?? ''}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className={
-                    'w-auto! top-[50%]! left-[50%]! translate-[-50%] select-none'
-                  }
+                  className={'w-auto! top-[50%]! left-[50%]! translate-[-50%] select-none'}
                   priority={isPriority}
                 />
               </AspectRatio>

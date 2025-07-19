@@ -1,11 +1,5 @@
 import { memo, useState } from 'react';
-import {
-  Button,
-  Popover,
-  PopoverAnchor,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/shared/shadcn';
+import { Button, Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from '@/shared/shadcn';
 import { DeleteModalProps } from '../model';
 
 export const DeletePopover = memo(function DeletePopover({
@@ -20,11 +14,7 @@ export const DeletePopover = memo(function DeletePopover({
   }
 
   return (
-    <Popover
-      modal={true}
-      open={deleteModalOpen}
-      onOpenChange={setDeleteModalOpen}
-    >
+    <Popover modal={true} open={deleteModalOpen} onOpenChange={setDeleteModalOpen}>
       <PopoverTrigger asChild className={'w-full'}>
         <Button variant={'outline'} className={'w-full'}>
           Удалить
