@@ -42,9 +42,9 @@ const SIDEBAR_KEYBOARD_SHORTCUT = 'b';
 
 type SidebarContextProps = {
   state: 'expanded' | 'collapsed';
-  setOpen: (open: boolean) => void; // eslint-disable-line no-unused-vars
+  setOpen: (open: boolean) => void;
   openMobile: boolean;
-  setOpenMobile: (open: boolean) => void; // eslint-disable-line no-unused-vars
+  setOpenMobile: (open: boolean) => void;
   isMobile: boolean;
   toggleSidebar: () => void;
 };
@@ -82,8 +82,8 @@ function SidebarProvider({
   const [_open, _setOpen] = useState(defaultOpen);
   const open = openProp ?? _open;
   const setOpen = useCallback(
-    (value: boolean | ((_prevValue: boolean) => boolean)) => {
-      const openState = typeof value === 'function' ? value(open) : value; // eslint-disable-line no-unused-vars
+    (value: boolean | ((prevValue: boolean) => boolean)) => {
+      const openState = typeof value === 'function' ? value(open) : value;
 
       if (setOpenProp) {
         setOpenProp(openState);

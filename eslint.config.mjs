@@ -32,6 +32,7 @@ export default [
 
   // Конфиг Next.js и Core Web Vitals
   {
+    files: ['**/*.{js,jsx,ts,tsx}'],
     plugins: {
       '@next/next': nextPlugin,
     },
@@ -126,11 +127,11 @@ export default [
       // ❗ Удалять неиспользуемые импорты автоматически
       'unused-imports/no-unused-imports': 'error',
 
+      // 🔕 Отключаем правило о неиспользуемых переменных для определенных файлов
+      'no-unused-vars': 'off',
+
       // ⚠️ Предупреждение о неиспользуемых переменных, но игнорируем, если начинаются с "_"
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
-      ],
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
 
       // ❗ Запрещаем использование any — лучше избегать его вообще
       '@typescript-eslint/no-explicit-any': 'error',
@@ -151,6 +152,15 @@ export default [
       'react/prop-types': 'off', // Отключаем, так как используем TypeScript
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+    },
+  },
+
+  // Специальная конфигурация для shadcn компонентов
+  {
+    files: ['**/shadcn/**/*.{ts,tsx}'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
+      'no-unused-vars': 'off',
     },
   },
 ];

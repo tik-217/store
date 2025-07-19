@@ -6,5 +6,5 @@ export interface SearchResult {
 export interface SearchDropdownProps {
   isLoading: boolean;
   searchResult: SearchResult[];
-  listItemHandler: (item: SearchResult) => void; // eslint-disable-line no-unused-vars
+  listItemHandler: (item: SearchResult) => void;
 }
