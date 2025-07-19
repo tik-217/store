@@ -127,7 +127,10 @@ export default [
       'unused-imports/no-unused-imports': 'error',
 
       // ⚠️ Предупреждение о неиспользуемых переменных, но игнорируем, если начинаются с "_"
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
 
       // ❗ Запрещаем использование any — лучше избегать его вообще
       '@typescript-eslint/no-explicit-any': 'error',

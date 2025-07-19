@@ -1,4 +1,3 @@
 export interface DeleteModalProps {
-  productId: number;
-  handleDelete: ({ productId }: { productId: number }) => void;
+  handleDelete: ({ productId }: { productId: number }) => void; // eslint-disable-line no-unused-vars
 }
